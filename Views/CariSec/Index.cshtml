@@ -1,0 +1,23 @@
+﻿@using static TemaCrm.Controllers.CariSecController;
+@model List<CariSecListe>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Panel/_Panel.cshtml";
+}
+
+<br />
+
+<input type="search" class="form-control" id="inputPassword2" placeholder="Ara...">
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4">
+            <div class="card card-body   border-dark border">
+                <h5 class="card-title">@item.CARI_KOD</h5>
+                <p class="card-text">  @item.CARI_UNVANI </p>
+                <a href="/CariSec/SutTopla/?CARI_NO=@item.CARI_NO" class="btn btn-blue waves-effect waves-light btn-xs">Seç</a>
+            </div>
+        </div>
+    } 
+</div>

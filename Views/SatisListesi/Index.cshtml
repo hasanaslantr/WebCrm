@@ -1,0 +1,105 @@
+﻿@using static TemaCrm.Controllers.SatisListesiController; 
+@model List<SatisAlsa>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Panel/_Panel.cshtml";
+} 
+<br />
+
+
+
+<div class="card mb-2">
+    <div class="card-body">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <form class="d-flex flex-wrap align-items-center">
+                    <label for="inputPassword2" class="visually-hidden">Search</label> 
+                    <div class="me-3"> 
+                        <input type="date" value="@DateTime.Now.ToString()"class="form-control"> 
+                    </div>
+                    <div class="me-3">
+                        <input type="date" value="@DateTime.Now.ToString()" class="form-control">
+                    </div> 
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="text-md-end mt-3 mt-md-0"> 
+                    <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#custom-modal"><i class="mdi mdi-plus-search me-1"></i>Filitrele</button>
+                </div>
+            </div><!-- end col-->
+        </div> <!-- end row -->
+    </div> <!-- end card-body-->
+</div> 
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                <table id="BayiMain" class="table table-striped   nowrap w-100 table-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th> 
+                            <td>Cari Ünvanı</td>
+                            <td>Genel Toplam</td>
+                            <td>Tarih</td>
+                            <td>Persoel</td>
+                            <td>İşlemler</td>
+                        </tr>
+                    </thead> 
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ALISSATIS_NO</td>
+                                <td>@item.CARI_UNVANI</td>
+                                <td>@item.GENEL_TOPLAM ₺</td>
+                                <td>@item.TARIH</td>
+                                <td>@item.PERSONEL_UNVANI</td> 
+                                <td><a href="/Product/UpdateProduct/@item.ALISSATIS_NO" class="btn btn-success btn-xs">İncele</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+
+<script src="~/assets/js/vendor.min.js"></script>
+
+<!-- third party js -->
+<script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="~/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<!-- third party js ends -->
+<!-- Datatables init -->
+<script src="~/assets/js/pages/datatables.init.js"></script>
+
+<!-- App js -->
+<script src="~/assets/js/app.min.js"></script>
+
+<script>
+    $('#BayiMain').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json",
+        },
+        "pageLength": 10,
+        "order": [],
+        "autoWidth": false
+    });
+
+</script>
+
